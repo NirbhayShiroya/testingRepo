@@ -35,12 +35,6 @@ namespace MVC.Controllers
             return View();
         }
 
-        public IActionResult AddNewEmployee123456()
-        {
-            return View();
-        }
-       
-
         [HttpPost]
         public IActionResult AddNewEmployee(EmployeeModel employee)
         {
