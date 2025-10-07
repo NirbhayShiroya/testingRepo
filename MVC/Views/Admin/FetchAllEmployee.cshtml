@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Repositories.EmployeeModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+        text-align: center;
+    }
+</style>
+
+<center>
+<h1>Employee Data</h1>
+<div style="margin-top: 50px;">
+    <table>
+        <tr>
+            <th>Eid</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Profile Image</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Eid</td>
+                <td>@emp.Name</td>
+                <td>@emp.Email</td>
+                <td>@emp.Password</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(emp.ProfileImage))
+                    {
+                        <img src="@Url.Content("~/profile_images/" + emp.ProfileImage)" alt="Profile Image" style="width:100px; height:auto;" />
+                    }
+                    else
+                    {
+                        <span>No Image</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="UpdateEmployeeDetails" asp-route-id="@emp.Eid">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@emp.Eid">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+<a asp-action="AddNewEmployee" asp-controller="Admin">Add New Employee</a>
+</div>
+</center>
